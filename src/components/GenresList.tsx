@@ -1,10 +1,10 @@
-import useGenres, { Genre, GenresResponse } from "@/hooks/useGenres";
+import useGenres from "@/hooks/useGenres";
 
 const GenresList = () => {
-  const { genres } = useGenres();
+  const { data } = useGenres();
   return (
     <ul>
-      {genres.map((g) => (
+      {data.map((g) => (
         <li key={g.id}>{g.name}</li>
       ))}
     </ul>
