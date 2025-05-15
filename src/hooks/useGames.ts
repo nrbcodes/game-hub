@@ -42,8 +42,8 @@ const useGames = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    setIsLoading(true);
     const controller = new AbortController();
+    setIsLoading(true);
     apiClient
       .get<GamesResponse>("/games", { signal: controller.signal })
       .then((res) => {
@@ -51,9 +51,9 @@ const useGames = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        setIsLoading(false);
         if (err instanceof CanceledError) return;
         setError(err.message);
+        setIsLoading(false);
       });
 
     return () => controller.abort();
